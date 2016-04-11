@@ -1,0 +1,51 @@
+# Mysql create backup of database
+mysqldump -u root -p database_name > backup.sql
+
+# Mysql restore backup of database
+mysql -u root -p database_name < backup.sql
+
+##MySQL on Bitnami 
+## Run Mysql skipping locking
+$ mysqld --skip-grant-tables --user=mysql --pid-file=/opt/bitnami/mysql/data/mysqld.pid 
+--skip-external-locking --port=3306 --sock=/opt/bitnami/mysql/tmp/mysql.sock
+
+## Repair MySQL user table.
+In this case, the error was related to a MySQL user table.
+mysql> use mysql;
+mysql> repair table user;
+mysql> check table user;
+mysql> exit;
+
+## Create user and grant privilege on that database
+$ mysql -u root -p
+mysql> create database database_name;
+mysql> grant all privileges on database_name.* to 'bitnami'@'localhost'
+identified by 'BITNAMI_USER_PASSWORD';
+mysql> flush privileges;
+mysql> exit;
+
+## Reset the MySQL root password on Bitnami Apps
+##If you don't remember your MySQL root password, you can follow the steps below to reset it ##to a new value:
+##Assuming your BitNami stack is located in the /opt/bitnami directory, create a file in ##/home/bitnami/mysql-init with the content shown below (replace mynewpassword string with the ##one you want):
+UPDATE mysql.user SET Password=PASSWORD('mynewpassword') WHERE User='root';
+FLUSH PRIVILEGES;
+##Stop the MySQL server:
+$ sudo /opt/bitnami/ctlscript.sh stop mysql
+##Start MySQL with the following command:
+$ sudo /opt/bitnami/mysql/bin/mysqld_safe --defaults-file=/opt/bitnami/mysql/my.cnf --pid-file=/opt/bitnami/mysql/data/mysqld.pid --init-file=/home/bitnami/mysql-init 2> /dev/null &
+##Restart the MySQL server:
+$ sudo /opt/bitnami/ctlscript.sh restart mysql
+##Remove the init script
+$ rm /home/bitnami/mysql-init
+
+## Reset MySQL root password on Windows
+##If you don't remember your MySQL root password on Windows, you can follow the steps below to 
+##reset it to a new value:
+##Assuming your BitNami stack is located in the C:\Bitnami directory and that you have opened ##the Bitnami Console, create a file in C:\Bitnami\mysql-init.txt with the content shown below ##(replace mynewpassword string with the one you want):
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('mynewpassword');
+## Stop the MySQL server using the Manager Tool.
+##Start MySQL with the following command into the Bitnami Console to set the new password:
+mysql\bin\mysqld --defaults-file=mysql\my.ini --init-file=C:\Bitnami\mysql-init.txt --console
+##Press Ctrl-c when the process finished showing the MySQLversion to kill the process. For ##example:
+##Version: '5.5.42'  socket: ''  port: 3306  MySQL Community Server (GPL)
+##Start the MySQL server again using the Bitnami Manager Tool and delete the mysql-init script.

@@ -1,0 +1,12 @@
+    To begin with your request I'll be asking for the following:
+
+1. What Operating System should be used?
+2. Is there a need for 32bit or 64bit machine?
+3. What specification do you require?
+   a. How much (RAM) Memory: _GB?
+   b. No. of vCPU?
+   c. Storage Size in GB ?
+4. What particular application/packages should be needed? e.g Apache2, MySQL,PHP5 etc...
+5. What ports are needed to be used?
+6. Is this for testing only?
+7. Do you need direct access to this server?

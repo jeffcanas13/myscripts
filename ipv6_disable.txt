@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## On ubuntu
+## Disable IPV6
+SYSCTL=/etc/sysctl.conf
+echo "net.ipv6.conf.all.disable_ipv6 = 1" >> $SYSCTL
+echo "net.ipv6.conf.default.disable_ipv6 = 1" >> $SYSCTL
+echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> $SYSCTL
+sudo sysctl -p
+
+## On 
+###/etc/sysctl.conf
+#net.ipv6.conf.all.disable_ipv6 = 1
+#sudo sysctl -p

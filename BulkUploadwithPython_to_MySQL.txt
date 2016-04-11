@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+
+import pymysql
+from datetime import date
+
+SQL = """
+ insert into SCHEMA.TABLE 
+  (USER_ID, COL_1, COL_2, COL_3) 
+ values(%s, %s, %s, %s)
+"""
+
+def timestamp():
+ utc_date = date(2008, 1, 1)
+ return (utc_date.toordinal() - date(1970, 1, 1).toordinal()) * 24*60*60
+
+def connect():
+ try:
+  return pymysql.connect(host='127.0.0.1', 
+   port=3306, 
+   user='username', 
+   passwd='password', 
+   db='mysql')
+ except MySQLError as e:
+     print('Got error {!r}, errno is {}'.format(e, e.args[0]))
+
+def executemany(list):
+ conn = connect()
+ cur = conn.cursor()
+
+ cur.executemany(SQL, list)
+
+ conn.commit()    
+ cur.close()
+ conn.close()
+ 
+ 
+ ###Building the Data Structure
+ for index, row in enumerate(struct):
+   records.append(
+     ('val1', 'val2', 'val3', timestamp())
+   )

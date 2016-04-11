@@ -1,0 +1,7 @@
+# ~/.ssh/config
+# This is to have easier access to your server by typing the ssh [host in config] 
+# jeff@jeffserver# ssh jeffrey
+Host jeffrey
+	Hostname		jeffrey-canas-server
+	User	 		ubuntu
+	IdentifyFile	~/.ssh/jeff.pem2
