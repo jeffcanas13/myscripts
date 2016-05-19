@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # size of swapfile in megabytes
-swapsize=8000
+echo "Size of SWAPFILE in Megabytes:"
+read swapsize
 
 # does the swap file already exist?
 grep -q "swapfile" /etc/fstab
