@@ -5,3 +5,5 @@ apt-get update
     echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list
     apt-get update
     apt-get install jenkins
+# to update the jenkins with new version on the release line run this
+# apt-get update ; apt-get install jenkins
