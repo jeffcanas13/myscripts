@@ -1,14 +1,14 @@
 ##on Ubuntu Linux
 cat /etc/os-release | grep 'PRETTY_NAME=' 
 cat /etc/debian_version
-uname -a |awk '{print $12}
+uname -a |awk '{print $12}'
 
 ##on Debian Linux
 cat /etc/os-release | grep 'PRETTY_NAME='
 cat /etc/debian_version
-uname -a |awk '{print $12}
+uname -a |awk '{print $12}'
 
 ##on Centos Linux
 cat /etc/os-release | grep 'PRETTY_NAME='
 cat /etc/centos-release
-uname -a |awk '{print $12}
+uname -a |awk '{print $12}'
